@@ -1,0 +1,1 @@
+The site is deployed from the main branch using GitHub Actions and GitHub Pages.
