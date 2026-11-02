@@ -58,7 +58,7 @@
 </div><div class="actions"><button type="button" class="btn ghost" id="cancel">Annuler</button><div class="actions-right"><button type="button" class="btn ghost" id="delete" hidden>Supprimer</button><button class="btn" type="submit">Enregistrer</button></div></div></form></dialog>
 <script>
 const KEY='camping-hivernage-v1';
-const initial=[{id:'MH 12',heater:'electric',model:'',notes:'Ballon électrique à accumulation. Identification précise du modèle non disponible pour le moment.'},{id:'MH 14',heater:'gas-pilot',model:'',notes:'Chauffe-eau gaz instantané avec veilleuse.'}];
+const initial=[{id:'MH 12',heater:'electric',model:'',notes:'Ballon électrique à accumulation. Marque et capacité inconnues. Raccordements eau froide/eau chaude visibles, groupe de sécurité avec capuchon rouge et évacuation blanche observés. Procédure exacte de vidange à confirmer selon le modèle.'},{id:'MH 14',heater:'gas-pilot',model:'',notes:'Chauffe-eau gaz instantané avec veilleuse.'}];
 let homes=load();let editing=null;
 function load(){try{const v=JSON.parse(localStorage.getItem(KEY));if(!Array.isArray(v))return initial.slice();const next=v.slice();for(const item of initial){if(!next.some(h=>h.id.toLowerCase()===item.id.toLowerCase()))next.push(item)}return next}catch{return initial.slice()}}
 function save(){localStorage.setItem(KEY,JSON.stringify(homes));render()}
