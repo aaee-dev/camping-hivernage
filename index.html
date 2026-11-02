@@ -8,14 +8,45 @@
 <style>
 :root{--bg:#f3f5f1;--panel:#fff;--ink:#1d2923;--muted:#66736b;--line:#dfe6df;--green:#245b43;--green2:#e7f1e9;--amber:#fff3d8;--red:#fbe9e6;--shadow:0 8px 28px #14251a0d}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{background:#17251f;color:white;padding:22px 18px 18px}.wrap{max-width:920px;margin:auto}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#b7c9bc}.top h1{font-size:26px;margin:5px 0 3px}.top p{margin:0;color:#d2ddd5;font-size:14px}.main{padding:18px;max-width:920px;margin:auto}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.stat,.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat{padding:13px}.stat b{display:block;font-size:23px}.stat span{font-size:12px;color:var(--muted)}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 14px}.toolbar input{flex:1;min-width:150px}.field, input,select,textarea{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:white;color:var(--ink);width:100%}.btn{border:0;border-radius:10px;padding:11px 14px;background:var(--green);color:white;font-weight:650}.btn.secondary{background:#e8eee9;color:var(--ink)}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}.cards{display:grid;gap:11px}.card{padding:15px}.cardhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.card h2{font-size:18px;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:2px}.pill{display:inline-block;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:650;background:#edf0ed;color:#4d5b52}.pill.electric{background:#e8efff;color:#344f8a}.pill.gas{background:#fff0dc;color:#86551c}.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:13px 0}.detail{background:#f7f9f6;border-radius:10px;padding:9px 10px}.detail small{display:block;color:var(--muted);font-size:11px}.detail b{font-size:14px}.cardfoot{display:flex;gap:8px;justify-content:flex-end}.empty{padding:28px;text-align:center;color:var(--muted);background:white;border:1px dashed #cbd5cc;border-radius:14px}.notice{font-size:13px;color:var(--muted);padding:12px 13px;background:#edf2ed;border-radius:12px;margin:14px 0}.notice strong{color:var(--ink)}dialog{border:0;border-radius:18px;padding:0;width:min(560px,calc(100% - 24px));box-shadow:0 20px 70px #0003}dialog::backdrop{background:#101b16a8}.modal{padding:19px}.modal h2{margin:0 0 15px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.formgrid .wide{grid-column:1/-1}.formgrid label{font-size:12px;font-weight:650;color:var(--muted);display:grid;gap:5px}.actions{display:flex;justify-content:space-between;gap:8px;margin-top:18px}.actions-right{display:flex;gap:8px}.small{font-size:12px;color:var(--muted)}@media(max-width:520px){.stats{gap:7px}.stat{padding:10px}.stat b{font-size:20px}.main{padding:13px}.details{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}.top{padding:19px 15px}}
+
+.tabs{display:flex;gap:8px;margin:0 0 16px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:2}
+.tab{flex:1;border:1px solid var(--line);border-radius:11px;padding:12px 10px;background:#fff;color:var(--ink);font-weight:700}
+.tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.view[hidden]{display:none!important}
+.check-head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}
+.check-head select{max-width:220px}
+.progress{height:9px;background:#e4eae4;border-radius:99px;overflow:hidden;margin:10px 0 16px}
+.progress>span{display:block;height:100%;background:var(--green);width:0;transition:width .2s}
+.check-section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px}
+.check-section h2{font-size:17px;margin:0 0 9px}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid #edf0ed}
+.check-item:first-of-type{border-top:0}
+.check-item input{width:20px;height:20px;flex:0 0 20px;margin:2px 0 0;accent-color:var(--green)}
+.check-item span{display:block}
+.check-item small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.safety-note{background:var(--amber);border:1px solid #f0dfb9;border-radius:12px;padding:12px;font-size:13px;margin:12px 0}
+.check-actions{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:12px 0}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap"><div class="eyebrow">Outil de terrain · Camping</div><h1>Suivi hivernage</h1><p>Inventaire des mobil-homes et équipements — première version</p></div></header>
 <main class="main">
 <section class="stats" aria-label="Résumé"><div class="stat"><b id="count">0</b><span>Mobil-homes</span></div><div class="stat"><b id="electric">0</b><span>Ballons électriques</span></div><div class="stat"><b id="gas">0</b><span>Chauffe-eau gaz</span></div></section>
+<nav class="tabs" aria-label="Navigation principale"><button class="tab active" id="tabInventory" type="button">Inventaire</button><button class="tab" id="tabChecklist" type="button">Fiche hivernage</button></nav>
+<section class="view" id="inventoryView">
 <div class="toolbar"><input id="search" placeholder="Rechercher un mobil-home…" aria-label="Rechercher"><select id="filter" style="max-width:170px" aria-label="Filtrer par équipement"><option value="all">Tous les équipements</option><option value="electric">Ballon électrique</option><option value="gas-auto">Gaz · automatique</option><option value="gas-pilot">Gaz · veilleuse</option><option value="unknown">À identifier</option></select><button class="btn" id="add">+ Ajouter</button></div>
 <div id="cards" class="cards"></div>
+<div id="cards" class="cards"></div>
+</section>
+<section class="view" id="checklistView" hidden>
+<div class="check-head"><div><strong>Fiche générale d'hivernage</strong><div class="sub">Une fiche commune, adaptée à l'équipement du mobil-home.</div></div><select id="checkHome" aria-label="Choisir le mobil-home"></select></div>
+<div class="sub" id="checkEquipment"></div>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="sub" id="progressText">0 opération terminée</div>
+<div id="checkSections"></div>
+<div class="safety-note"><strong>Important :</strong> cette fiche est un aide-mémoire général, pas une procédure technique validée pour chaque appareil. Respecter les notices des fabricants et les consignes du camping. Les interventions sur le gaz et les équipements électriques doivent être confiées à une personne compétente et habilitée. Ne jamais remettre un chauffe-eau électrique sous tension avant qu'il soit entièrement rempli et purgé conformément à sa notice.</div>
+<div class="check-actions"><button class="btn secondary" id="resetChecklist" type="button">Réinitialiser cette fiche</button><span class="small">Progression enregistrée sur cet appareil.</span></div>
+</section>
 <div class="notice"><strong>À savoir :</strong> les modifications de cette première version sont enregistrées dans le navigateur de cet appareil. Elles ne sont pas encore synchronisées avec GitHub ni partagées automatiquement avec l'assistante. Utilise « Exporter » pour sauvegarder les données et les transmettre.</div>
 <div class="toolbar"><button class="btn secondary" id="export">Exporter les données</button><button class="btn ghost" id="import">Importer un fichier</button><input id="file" type="file" accept="application/json" hidden></div>
 <p class="small">Version 0.1 · Les procédures techniques d’hivernage seront ajoutées après validation du matériel et des configurations sur le terrain.</p>
@@ -40,6 +71,101 @@ document.querySelector('#form').onsubmit=e=>{e.preventDefault();const h={id:e.ta
 document.querySelector('#delete').onclick=()=>{if(editing&&confirm('Supprimer '+editing+' de l’inventaire ?')){homes=homes.filter(x=>x.id!==editing);save();document.querySelector('#editor').close()}};
 document.querySelector('#export').onclick=()=>{const blob=new Blob([JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),mobilHomes:homes},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='camping-hivernage-inventaire.json';a.click();URL.revokeObjectURL(a.href)};
 document.querySelector('#import').onclick=()=>document.querySelector('#file').click();document.querySelector('#file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text());const incoming=Array.isArray(obj)?obj:obj.mobilHomes;if(!Array.isArray(incoming)||!incoming.every(x=>x&&typeof x.id==='string'&&typeof x.heater==='string'))throw Error();if(confirm('Remplacer l’inventaire actuel par '+incoming.length+' mobil-home(s) ?')){homes=incoming;save()}}catch{alert('Fichier invalide ou format non reconnu.')}e.target.value=''};
+
+const CHECK_KEY='camping-hivernage-checks-v1';
+const checklist=[
+ {title:'Préparation et contrôle',items:[
+  {id:'general-1',label:'Identifier le mobil-home et relever les particularités',detail:'Vérifier l'inventaire et les éventuelles notes propres au logement.'},
+  {id:'general-2',label:'Retirer les denrées et produits sensibles au gel',detail:'Contrôler réfrigérateur, placards et rangements.'},
+  {id:'general-3',label:'Vérifier les ouvrants et l'état général',detail:'Signaler toute anomalie avant fermeture.'}
+ ]},
+ {title:'Eau et sanitaires',items:[
+  {id:'water-1',label:'Mettre le logement hors alimentation en eau selon la consigne du camping',detail:'Coordonner la coupure avec la personne responsable du réseau.'},
+  {id:'water-2',label:'Faire vidanger les circuits d’eau et les équipements concernés',detail:'Suivre la procédure validée pour ce modèle de mobil-home.'},
+  {id:'water-3',label:'Contrôler robinets, douche, WC et évacuations',detail:'Vérifier qu'aucun volume d'eau résiduel à risque de gel n'a été oublié.'}
+ ]},
+ {title:'Chauffe-eau — ballon électrique',when:['electric'],items:[
+  {id:'heater-e-1',label:'Faire isoler électriquement le chauffe-eau avant la vidange',detail:'Opération à confier à une personne compétente ; respecter la notice.'},
+  {id:'heater-e-2',label:'Faire vidanger le ballon selon la notice du fabricant',detail:'La méthode dépend du modèle et de son groupe de sécurité.'},
+  {id:'heater-e-3',label:'Confirmer que le ballon est vide et protégé contre le gel',detail:'Ne pas remettre sous tension pendant l'hivernage.'},
+  {id:'heater-e-4',label:'Noter la condition de remise en service',detail:'Le ballon devra être entièrement rempli et purgé avant toute remise sous tension.'}
+ ]},
+ {title:'Chauffe-eau — gaz avec veilleuse',when:['gas-pilot'],items:[
+  {id:'heater-p-1',label:'Identifier l’appareil et consulter sa notice',detail:'Confirmer la procédure d’arrêt et d’hivernage propre au modèle.'},
+  {id:'heater-p-2',label:'Faire mettre l’appareil et son alimentation gaz en sécurité',detail:'À réaliser selon les consignes du camping et la notice, par une personne compétente.'},
+  {id:'heater-p-3',label:'Faire vérifier la protection contre le gel du circuit d’eau',detail:'Un chauffe-eau instantané ne stocke pas l’eau comme un ballon, mais de l’eau peut rester dans ses conduites.'}
+ ]},
+ {title:'Chauffe-eau — gaz à allumage automatique',when:['gas-auto'],items:[
+  {id:'heater-a-1',label:'Identifier l’appareil et consulter sa notice',detail:'Confirmer la procédure d’arrêt et d’hivernage propre au modèle.'},
+  {id:'heater-a-2',label:'Faire mettre l’appareil et son alimentation gaz en sécurité',detail:'À réaliser selon les consignes du camping et la notice, par une personne compétente.'},
+  {id:'heater-a-3',label:'Faire vérifier la protection contre le gel du circuit d’eau',detail:'Un chauffe-eau instantané ne stocke pas l’eau comme un ballon, mais de l’eau peut rester dans ses conduites.'}
+ ]},
+ {title:'Chauffe-eau — type non identifié ou absent',when:['unknown','none'],items:[
+  {id:'heater-u-1',label:'Identifier le type de chauffe-eau ou confirmer son absence',detail:'Ne pas appliquer de procédure de vidange avant identification.'},
+  {id:'heater-u-2',label:'Faire valider la procédure par une personne compétente',detail:'Consulter la notice et les consignes du camping.'}
+ ]},
+ {title:'Électricité et équipements',items:[
+  {id:'power-1',label:'Mettre hors service les équipements selon la consigne du camping',detail:'Ne pas intervenir dans les tableaux ou circuits sans habilitation.'},
+  {id:'power-2',label:'Vérifier les appareils laissés sous tension',detail:'Confirmer avec le responsable quels équipements doivent rester alimentés.'}
+ ]},
+ {title:'Intérieur et fermeture',items:[
+  {id:'inside-1',label:'Nettoyer et laisser les espaces de rangement en état',detail:'Retirer les objets et textiles sensibles à l'humidité.'},
+  {id:'inside-2',label:'Vérifier réfrigérateur, portes et placards',detail:'Appliquer les consignes spécifiques des appareils.'},
+  {id:'inside-3',label:'Vérifier fenêtres, portes et aérations',detail:'Fermer et sécuriser sans obstruer les ventilations permanentes prévues.'},
+  {id:'inside-4',label:'Effectuer le contrôle final et signaler les anomalies',detail:'Ajouter les observations à la fiche du mobil-home.'}
+ ]}
+];
+let checks={};try{checks=JSON.parse(localStorage.getItem(CHECK_KEY))||{}}catch{checks={}}
+function currentCheckHome(){return document.querySelector('#checkHome').value}
+function saveChecks(){localStorage.setItem(CHECK_KEY,JSON.stringify(checks))}
+function renderChecklist(){
+ const id=currentCheckHome(),home=homes.find(h=>h.id===id),root=document.querySelector('#checkSections');
+ root.innerHTML='';
+ if(!home){root.innerHTML='<div class="empty">Ajoute d’abord un mobil-home dans l’inventaire.</div>';document.querySelector('#checkEquipment').textContent='';document.querySelector('#progressText').textContent='';document.querySelector('#progressBar').style.width='0%';return}
+ const relevant=checklist.filter(s=>!s.when||s.when.includes(home.heater));
+ document.querySelector('#checkEquipment').textContent='Équipement détecté : '+(names[home.heater]||names.unknown);
+ const state=checks[id]||{};
+ let total=0,done=0;
+ relevant.forEach(section=>{
+  const box=document.createElement('section');box.className='check-section';
+  const heading=document.createElement('h2');heading.textContent=section.title;box.appendChild(heading);
+  section.items.forEach(item=>{
+   total++;if(state[item.id])done++;
+   const label=document.createElement('label');label.className='check-item';
+   const input=document.createElement('input');input.type='checkbox';input.checked=!!state[item.id];
+   input.addEventListener('change',()=>{checks[id]=checks[id]||{};checks[id][item.id]=input.checked;saveChecks();renderChecklist()});
+   const content=document.createElement('span');const strong=document.createElement('strong');strong.textContent=item.label;const small=document.createElement('small');small.textContent=item.detail;content.append(strong,small);label.append(input,content);box.appendChild(label);
+  });
+  root.appendChild(box);
+ });
+ const pct=total?Math.round(done/total*100):0;
+ document.querySelector('#progressBar').style.width=pct+'%';
+ document.querySelector('#progressText').textContent=done+' / '+total+' opérations terminées · '+pct+' %';
+}
+function refreshCheckHomes(selected){
+ const select=document.querySelector('#checkHome'),previous=selected||select.value;
+ select.innerHTML='';
+ homes.slice().sort((a,b)=>a.id.localeCompare(b.id,'fr',{numeric:true})).forEach(h=>{const option=document.createElement('option');option.value=h.id;option.textContent=h.id;select.appendChild(option)});
+ if(homes.some(h=>h.id===previous))select.value=previous;
+ renderChecklist();
+}
+function showView(view){
+ const inventory=view==='inventory';
+ document.querySelector('#inventoryView').hidden=!inventory;
+ document.querySelector('#checklistView').hidden=inventory;
+ document.querySelector('#tabInventory').classList.toggle('active',inventory);
+ document.querySelector('#tabChecklist').classList.toggle('active',!inventory);
+ if(!inventory)refreshCheckHomes();
+}
+document.querySelector('#tabInventory').onclick=()=>showView('inventory');
+document.querySelector('#tabChecklist').onclick=()=>showView('checklist');
+document.querySelector('#checkHome').onchange=renderChecklist;
+document.querySelector('#resetChecklist').onclick=()=>{const id=currentCheckHome();if(id&&confirm('Réinitialiser les cases cochées pour '+id+' ?')){delete checks[id];saveChecks();renderChecklist()}};
+const originalSave=save;
+save=function(){originalSave();refreshCheckHomes(currentCheckHome())};
+refreshCheckHomes();
+render();
+
 render();
 </script>
 </body></html>
