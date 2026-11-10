@@ -53,7 +53,8 @@
 <dialog id="editor"><form class="modal" id="form"><h2 id="modalTitle">Mobil-home</h2><div class="formgrid">
 <label>Identifiant<input name="id" required placeholder="Ex. MH 12"></label>
 <label>Type de chauffe-eau<select name="heater"><option value="unknown">À identifier</option><option value="electric">Ballon électrique à accumulation</option><option value="gas-auto">Chauffe-eau gaz à allumage automatique</option><option value="gas-pilot">Chauffe-eau gaz avec veilleuse</option><option value="none">Aucun / autre</option></select></label>
-<label class="wide">Marque et modèle (si connus)<input name="model" placeholder="Facultatif"></label>\n<label>À remplacer avant le (année)<input name="gasHoseYear" type="number" min="2000" max="2100" step="1" inputmode="numeric" placeholder="Ex. 2027"></label>
+<label class="wide">Marque et modèle (si connus)<input name="model" placeholder="Facultatif"></label>
+<label>À remplacer avant le (année)<input name="gasHoseYear" type="number" min="2000" max="2100" step="1" inputmode="numeric" placeholder="Ex. 2027"></label>
 <label class="wide">Notes terrain<textarea name="notes" rows="3" placeholder="Raccordements, particularités, points à vérifier…"></textarea></label>
 </div><div class="actions"><button type="button" class="btn ghost" id="cancel">Annuler</button><div class="actions-right"><button type="button" class="btn ghost" id="delete" hidden>Supprimer</button><button class="btn" type="submit">Enregistrer</button></div></div></form></dialog>
 <script>
